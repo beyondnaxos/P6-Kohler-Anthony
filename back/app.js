@@ -1,9 +1,18 @@
 const express = require('express') 
 const mongoose = require('mongoose') 
 const path = require('path') 
+const helmet = require('helmet');
+const rateLimit = require("express-rate-limit");
+
+
 
 const sauceRoutes = require('./routes/sauce') 
 const userRoutes = require('./routes/user') 
+
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100 
+})
 
 mongoose.connect('mongodb+srv://patoch:patoch@cluster0.ob1zz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
 { useNewUrlParser: true,
@@ -21,6 +30,8 @@ app.use((req, res, next) => {
   }) 
 
 app.use(express.json()) 
+app.use(helmet())
+app.use(limiter)
 app.use('/images', express.static(path.join(__dirname, 'images'))) 
 app.use('/api/sauces', sauceRoutes) 
 app.use('/api/auth', userRoutes) 
