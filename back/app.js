@@ -3,6 +3,8 @@ const mongoose = require('mongoose')
 const path = require('path') 
 const helmet = require('helmet');
 const rateLimit = require("express-rate-limit");
+require('dotenv').config()
+
 
 
 

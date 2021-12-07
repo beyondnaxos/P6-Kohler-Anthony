@@ -1,6 +1,17 @@
 const bcrypt = require("bcrypt") 
 const jwt = require('jsonwebtoken') 
+// const cryptoJS = require('crypto-js')
 const User = require("../models/user") 
+
+
+
+// encryption email
+// exports.encryptEmail = (req, res, next) => {
+//     const email = req.body.email
+//     const encryptedEmail = cryptoJS.HmacSHA256(email, 'secret key 123').toString()
+//     req.body.email = encryptedEmail
+
+// }
 
 exports.signup = (req, res, next) => {
     bcrypt.hash(req.body.password, 10)
