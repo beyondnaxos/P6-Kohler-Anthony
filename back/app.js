@@ -5,18 +5,15 @@ const helmet = require('helmet');
 const rateLimit = require("express-rate-limit");
 require('dotenv').config()
 
-
-
-
 const sauceRoutes = require('./routes/sauce') 
 const userRoutes = require('./routes/user') 
 
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
+  windowMs: 0.1 * 60 * 1000,
   max: 100 
 })
 
-mongoose.connect('mongodb+srv://patoch:patoch@cluster0.ob1zz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+mongoose.connect(process.env.MONGODB,
 { useNewUrlParser: true,
     useUnifiedTopology: true })
     .then(() => console.log('Connexion à MongoDB réussie !'))
