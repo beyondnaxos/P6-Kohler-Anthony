@@ -1,8 +1,8 @@
 module.exports = (req, res, next) => {
-    let userPassLength = req.body.password.length >= 8
+    let userPassLength = req.body.password.length 
     
 
-    if(userPassLength){
+    if(userPassLength > 8){
         next();
     } else {
         res.status(400).json({
