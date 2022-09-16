@@ -6,7 +6,7 @@ const rateLimit = require("express-rate-limit");
 require('dotenv').config()
 
 const sauceRoutes = require('./routes/sauce') 
-const userRoutes = require('./routes/user') 
+const userRoutes = require('./routes/user')   
 
 const limiter = rateLimit({
   windowMs: 0.1 * 60 * 1000,
